@@ -13,10 +13,10 @@
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    console.log("Bot score: " + JSON.stringify(request.cf.botManagement.score));
-    // return new Response('Hello YouTube!');
-    let bot_score = JSON.stringify(request.cf.botManagement.score);
-    return new Response(JSON.stringify({ hello: "world", bot_score: bot_score }),
+    // Bot Management is an enterprise addon - Works in local but not in cloud
+    // let bot_score = JSON.stringify(request.cf.botManagement.score);
+    let bot_score = "n/a";
+    return new Response(JSON.stringify({ "hello": "world", "confidence": bot_score }),
       {
         headers: { "content-type": "application/json" },
       });
