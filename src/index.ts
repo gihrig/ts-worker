@@ -11,14 +11,12 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    // Bot Management is an enterprise addon - Works in local but not in cloud
-    // let bot_score = JSON.stringify(request.cf.botManagement.score);
-    let bot_score = "n/a";
-    return new Response(JSON.stringify({ "hello": "world", "confidence": bot_score }),
-      {
-        headers: { "content-type": "application/json" },
-      });
-  },
-};
+import { Hono } from 'hono';
+
+export interface Env { }
+
+const app = new Hono<{ Bindings: Env }>();
+
+app.get('/', c => c.json({ 'hello': 'world!' }));
+
+export default app;
