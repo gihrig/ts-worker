@@ -12,7 +12,13 @@
  */
 
 export default {
-	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		return new Response('Hello World!');
-	},
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    console.log("Bot score: " + JSON.stringify(request.cf.botManagement.score));
+    // return new Response('Hello YouTube!');
+    let bot_score = JSON.stringify(request.cf.botManagement.score);
+    return new Response(JSON.stringify({ hello: "world", bot_score: bot_score }),
+      {
+        headers: { "content-type": "application/json" },
+      });
+  },
 };
