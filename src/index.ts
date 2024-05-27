@@ -7,7 +7,7 @@ export interface Env {
 
 const app = new Hono<{ Bindings: Env }>()
 
-// GET /?query="How is your day going today?"
+// GET /?query="How is your day going?"
 app.get("/", async c => {
   const ai = new Ai(c.env.AI)
 
